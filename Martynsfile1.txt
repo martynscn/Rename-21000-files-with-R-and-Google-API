@@ -1,0 +1,339 @@
+
+R version 3.5.1 Patched (2018-10-19 r75470) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> library("devtools")
+> install.packages("ghit")
+--- Please select a CRAN mirror for use in this session ---
+Warning message:
+package ‘ghit’ is not available (for R version 3.5.1 Patched) 
+> devtools::install_github("cloudyr/RoogleVision")
+Downloading GitHub repo cloudyr/RoogleVision@master
+from URL https://api.github.com/repos/cloudyr/RoogleVision/zipball/master
+Installing RoogleVision
+Installing 1 package: googleAuthR
+trying URL 'https://cran.ms.unimelb.edu.au/bin/windows/contrib/3.5/googleAuthR_0.7.0.zip'
+Content type 'application/zip' length 345253 bytes (337 KB)
+downloaded 337 KB
+
+package ‘googleAuthR’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\martyns\AppData\Local\Temp\Rtmp6lU93k\downloaded_packages
+Installing 1 package: RCurl
+trying URL 'https://cran.ms.unimelb.edu.au/bin/windows/contrib/3.5/RCurl_1.95-4.12.zip'
+Content type 'application/zip' length 2968691 bytes (2.8 MB)
+downloaded 2.8 MB
+
+package ‘RCurl’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\martyns\AppData\Local\Temp\Rtmp6lU93k\downloaded_packages
+Installing 1 package: stringr
+trying URL 'https://cran.ms.unimelb.edu.au/bin/windows/contrib/3.5/stringr_1.4.0.zip'
+Content type 'application/zip' length 215520 bytes (210 KB)
+downloaded 210 KB
+
+package ‘stringr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\martyns\AppData\Local\Temp\Rtmp6lU93k\downloaded_packages
+"C:/PROGRA~1/R/R-35~1.1PA/bin/x64/R" --no-site-file --no-environ --no-save  \
+  --no-restore --quiet CMD INSTALL  \
+  "C:/Users/martyns/AppData/Local/Temp/Rtmp6lU93k/devtools2c6433a825d5/cloudyr-RoogleVision-cc1a8a2"  \
+  --library="C:/Program Files/R/R-3.5.1patched/library" --install-tests 
+
+* installing *source* package 'RoogleVision' ...
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package 'RoogleVision'
+    finding HTML links ... done
+    extractResponse                         html  
+    getGoogleVisionResponse                 html  
+    imageToText                             html  
+** building package indices
+** testing if installed package can be loaded
+*** arch - i386
+*** arch - x64
+* DONE (RoogleVision)
+In R CMD INSTALL
+> library("RoogleVision")
+> options("googleAuthR.client_id" = "734454100438-s8d0u05kokn55mdohg02saiv0o7o55lu.apps.googleusercontent.com")
+> options("googleAuthR.client_secret" = "uzXMwPK1hZqI1CnzPLVttMUM")
+> options("googleAuthR.scopes.selected" = c("https://www.googleapis.com/auth/cloud-platform"))
+> library("googleAuthR")
+2019-04-03 19:22:00> No environment argument found, looked in GAR_AUTH_FILE
+Warning message:
+package ‘googleAuthR’ was built under R version 3.5.3 
+> library("googleAuthR")
+> gar_auth()
+Adding .httr-oauth to .gitignore
+Waiting for authentication in browser...
+Press Esc/Ctrl + C to abort
+
+
+> gar_auth()
+Waiting for authentication in browser...
+Press Esc/Ctrl + C to abort
+Authentication complete.
+Token cache file: .httr-oauth
+> getwd()
+[1] "C:/Users/martyns/Documents"
+> setwd("C:/Users/totus tuus/Documents/R_projects/Rename_21000_Files_Using_Google_API/")
+> ls
+function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
+    pattern, sorted = TRUE) 
+{
+    if (!missing(name)) {
+        pos <- tryCatch(name, error = function(e) e)
+        if (inherits(pos, "error")) {
+            name <- substitute(name)
+            if (!is.character(name)) 
+                name <- deparse(name)
+            warning(gettextf("%s converted to character string", 
+                sQuote(name)), domain = NA)
+            pos <- name
+        }
+    }
+    all.names <- .Internal(ls(envir, all.names, sorted))
+    if (!missing(pattern)) {
+        if ((ll <- length(grep("[", pattern, fixed = TRUE))) && 
+            ll != length(grep("]", pattern, fixed = TRUE))) {
+            if (pattern == "[") {
+                pattern <- "\\["
+                warning("replaced regular expression pattern '[' by  '\\\\['")
+            }
+            else if (length(grep("[^\\\\]\\[<-", pattern))) {
+                pattern <- sub("\\[<-", "\\\\\\[<-", pattern)
+                warning("replaced '[<-' by '\\\\[<-' in regular expression pattern")
+            }
+        }
+        grep(pattern, all.names, value = TRUE)
+    }
+    else all.names
+}
+<bytecode: 0x0000000015371000>
+<environment: namespace:base>
+> getwd()
+[1] "C:/Users/totus tuus/Documents/R_projects/Rename_21000_Files_Using_Google_API"
+> gar_auth()
+Adding .httr-oauth to .gitignore
+Waiting for authentication in browser...
+Press Esc/Ctrl + C to abort
+Authentication complete.
+Token cache file: .httr-oauth
+> o <- getGoogleVisionResponse("testImages/hard facts.jpg")
+> o
+       mid description     score topicality
+1 /m/03q69        Hair 0.9675281  0.9675281
+2 /m/01f43      Beauty 0.8638556  0.8638556
+3 /m/06z04        Skin 0.8593028  0.8593028
+4 /m/0k0pj        Nose 0.8419632  0.8419632
+5 /m/0ds4x   Hairstyle 0.8363670  0.8363670
+> o <- getGoogleVisionResponse(imagePath = "testImages/hard facts.jpg", feature = "TEXT_DETECTION")
+> o
+  locale             description                               vertices
+1     en TUNE INTO0\nHARDFACTS\n   306, 711, 711, 306, 72, 72, 214, 214
+2   <NA>                    TUNE     452, 501, 501, 452, 72, 72, 96, 96
+3   <NA>                   INTO0     511, 563, 563, 511, 72, 72, 96, 96
+4   <NA>               HARDFACTS 306, 710, 711, 307, 118, 116, 212, 214
+> o$description
+[1] "TUNE INTO0\nHARDFACTS\n" "TUNE"                   
+[3] "INTO0"                   "HARDFACTS"              
+> i2 <- getGoogleVisionResponse(imagePath = "testImages/monkey9.jpg", feature = "TEXT_DETECTION")
+> i2
+   locale
+1      en
+2    <NA>
+3    <NA>
+4    <NA>
+5    <NA>
+6    <NA>
+7    <NA>
+8    <NA>
+9    <NA>
+10   <NA>
+11   <NA>
+12   <NA>
+13   <NA>
+14   <NA>
+15   <NA>
+16   <NA>
+17   <NA>
+18   <NA>
+19   <NA>
+20   <NA>
+21   <NA>
+22   <NA>
+23   <NA>
+24   <NA>
+25   <NA>
+26   <NA>
+27   <NA>
+28   <NA>
+29   <NA>
+30   <NA>
+31   <NA>
+32   <NA>
+33   <NA>
+                                                                                                                                                                   description
+1  Don't miss the opportunity to share this with\nothers as they might be asking themselves\nwhy we continue to do what we are doing if\nthere is a different way out there.\n
+2                                                                                                                                                                        Don't
+3                                                                                                                                                                         miss
+4                                                                                                                                                                          the
+5                                                                                                                                                                  opportunity
+6                                                                                                                                                                           to
+7                                                                                                                                                                        share
+8                                                                                                                                                                         this
+9                                                                                                                                                                         with
+10                                                                                                                                                                      others
+11                                                                                                                                                                          as
+12                                                                                                                                                                        they
+13                                                                                                                                                                       might
+14                                                                                                                                                                          be
+15                                                                                                                                                                      asking
+16                                                                                                                                                                  themselves
+17                                                                                                                                                                         why
+18                                                                                                                                                                          we
+19                                                                                                                                                                    continue
+20                                                                                                                                                                          to
+21                                                                                                                                                                          do
+22                                                                                                                                                                        what
+23                                                                                                                                                                          we
+24                                                                                                                                                                         are
+25                                                                                                                                                                       doing
+26                                                                                                                                                                          if
+27                                                                                                                                                                       there
+28                                                                                                                                                                          is
+29                                                                                                                                                                           a
+30                                                                                                                                                                   different
+31                                                                                                                                                                         way
+32                                                                                                                                                                         out
+33                                                                                                                                                                      there.
+                                 vertices
+1      41, 599, 599, 41, 41, 41, 172, 172
+2        41, 106, 106, 41, 41, 41, 64, 64
+3      116, 171, 171, 116, 42, 42, 64, 64
+4      179, 220, 220, 179, 41, 41, 64, 64
+5      228, 372, 372, 228, 42, 42, 70, 70
+6      381, 406, 406, 381, 44, 44, 64, 64
+7      415, 484, 484, 415, 41, 41, 64, 64
+8      492, 537, 537, 492, 41, 41, 64, 64
+9      546, 599, 599, 546, 41, 41, 64, 64
+10       51, 129, 129, 51, 75, 75, 98, 98
+11     138, 167, 167, 138, 81, 81, 98, 98
+12   175, 229, 229, 175, 75, 75, 104, 104
+13   240, 311, 311, 240, 75, 75, 104, 104
+14     320, 350, 350, 320, 75, 75, 98, 98
+15   358, 437, 437, 358, 75, 75, 104, 104
+16     447, 588, 588, 447, 76, 76, 98, 98
+17     43, 93, 93, 43, 115, 115, 138, 138
+18 102, 138, 138, 102, 115, 115, 132, 132
+19 147, 254, 254, 147, 111, 111, 132, 132
+20 263, 288, 288, 263, 111, 111, 132, 132
+21 297, 328, 328, 297, 110, 110, 132, 132
+22 337, 400, 400, 337, 110, 110, 132, 132
+23 408, 444, 444, 408, 115, 115, 132, 132
+24 453, 493, 493, 453, 115, 115, 132, 132
+25 501, 570, 570, 501, 110, 110, 138, 138
+26 581, 598, 598, 581, 110, 110, 132, 132
+27 108, 173, 173, 108, 144, 144, 166, 166
+28 183, 201, 201, 183, 145, 145, 166, 166
+29 210, 223, 223, 210, 150, 150, 166, 166
+30 234, 340, 340, 234, 144, 144, 166, 166
+31 349, 398, 398, 349, 150, 150, 172, 172
+32 407, 448, 448, 407, 146, 146, 166, 166
+33 456, 528, 528, 456, 144, 144, 167, 167
+> i2$description
+ [1] "Don't miss the opportunity to share this with\nothers as they might be asking themselves\nwhy we continue to do what we are doing if\nthere is a different way out there.\n"
+ [2] "Don't"                                                                                                                                                                      
+ [3] "miss"                                                                                                                                                                       
+ [4] "the"                                                                                                                                                                        
+ [5] "opportunity"                                                                                                                                                                
+ [6] "to"                                                                                                                                                                         
+ [7] "share"                                                                                                                                                                      
+ [8] "this"                                                                                                                                                                       
+ [9] "with"                                                                                                                                                                       
+[10] "others"                                                                                                                                                                     
+[11] "as"                                                                                                                                                                         
+[12] "they"                                                                                                                                                                       
+[13] "might"                                                                                                                                                                      
+[14] "be"                                                                                                                                                                         
+[15] "asking"                                                                                                                                                                     
+[16] "themselves"                                                                                                                                                                 
+[17] "why"                                                                                                                                                                        
+[18] "we"                                                                                                                                                                         
+[19] "continue"                                                                                                                                                                   
+[20] "to"                                                                                                                                                                         
+[21] "do"                                                                                                                                                                         
+[22] "what"                                                                                                                                                                       
+[23] "we"                                                                                                                                                                         
+[24] "are"                                                                                                                                                                        
+[25] "doing"                                                                                                                                                                      
+[26] "if"                                                                                                                                                                         
+[27] "there"                                                                                                                                                                      
+[28] "is"                                                                                                                                                                         
+[29] "a"                                                                                                                                                                          
+[30] "different"                                                                                                                                                                  
+[31] "way"                                                                                                                                                                        
+[32] "out"                                                                                                                                                                        
+[33] "there."                                                                                                                                                                     
+> i2 <- getGoogleVisionResponse(imagePath = "testImages/old currency.jpg", feature = "TEXT_DETECTION")
+> i2$description
+[1] "Kob\n" "Kob"  
+> i2
+  locale description                               vertices
+1     fy       Kob\n 104, 183, 183, 104, 244, 244, 266, 266
+2   <NA>         Kob 104, 183, 183, 104, 244, 244, 266, 266
+> i2 <- getGoogleVisionResponse(imagePath = "testImages/old money.jpg", feature = "TEXT_DETECTION")
+> i2$description
+[1] "CENTRAL BANK OFNIGERIA 439268\nONE\nN1\n"
+[2] "CENTRAL"                                 
+[3] "BANK"                                    
+[4] "OFNIGERIA"                               
+[5] "439268"                                  
+[6] "ONE"                                     
+[7] "N1"                                      
+> i2 <- getGoogleVisionResponse(imagePath = "testImages/old NTA.jpg", feature = "TEXT_DETECTION")
+> i2$description
+[1] "IKEJ?\nNEWS\n" "IKEJ"           "?"             "NEWS"          
+> i2 <- getGoogleVisionResponse(imagePath = "testImages/Send-Text-Message.jpg", feature = "TEXT_DETECTION")
+> i2$description
+[1] "01\n010\nSend?\nyes\nno\n" "01"                       
+[3] "010"                       "Send?"                    
+[5] "yes"                       "no"                       
+> i3 <- getGoogleVisionResponse(imagePath = "testImages/Send-Text-Message.jpg", feature = "TEXT_DETECTION")
+> i3
+  locale               description                               vertices
+1     en 01\n010\nSend?\nyes\nno\n   69, 207, 207, 69, 151, 151, 313, 313
+2   <NA>                        01    87, 96, 101, 91, 157, 151, 158, 164
+3   <NA>                       010     69, 84, 90, 74, 170, 160, 169, 178
+4   <NA>                     Send? 134, 207, 203, 130, 255, 268, 289, 276
+5   <NA>                       yes 119, 142, 140, 117, 281, 285, 295, 291
+6   <NA>                        no 184, 200, 197, 181, 299, 305, 313, 307
+> i4 <- getGoogleVisionResponse(imagePath = "testImages/Send-Text-Message.jpg", feature = "TEXT_DETECTION")
+Error in curl::curl_fetch_memory(url, handle = handle): Send failure: Connection was reset
+Request failed [ERROR]. Retrying in 1 seconds...
+Error in curl::curl_fetch_memory(url, handle = handle): Could not resolve host: vision.googleapis.com
+Request failed [ERROR]. Retrying in 2.6 seconds...
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Could not resolve host: vision.googleapis.com
+Error: Request failed before finding status code: Could not resolve host: vision.googleapis.com
+> 
